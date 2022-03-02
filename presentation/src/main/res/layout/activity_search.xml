@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+
+    <data>
+
+        <variable
+            name="view"
+            type="com.wanho.presentation.search.SearchActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.wanho.presentation.search.LocationViewModel" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_margin="8dp"
+        tools:context=".search.SearchActivity">
+
+
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/tool_bar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <FrameLayout
+            android:id="@+id/search_frame_layout"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintBottom_toTopOf="@id/divider_view"
+            app:layout_constraintTop_toBottomOf="@id/tool_bar" />
+
+
+        <View
+            android:id="@+id/divider_view"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginBottom="8dp"
+            android:background="@color/design_default_color_primary"
+            app:layout_constraintBottom_toTopOf="@id/distance_slider" />
+
+        <com.google.android.material.slider.Slider
+            android:id="@+id/distance_slider"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:stepSize="10"
+            android:value="@{viewModel.INIT_RADIUS}"
+
+            android:valueFrom="0"
+            android:valueTo="2000"
+            app:tickVisible="false"
+            app:layout_constraintBottom_toTopOf="@id/minute_text_view" />
+
+
+        <com.google.android.material.textview.MaterialTextView
+            android:id="@+id/minute_text_view"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="12dp"
+            android:gravity="top|center"
+            tools:text="예상 도보 시간은 _분입니다."
+            app:layout_constraintBottom_toTopOf="@id/distance_slider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/search_button" />
+
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/search_button"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:text="검색"
+            app:icon="@drawable/ic_baseline_search_24"
+            app:iconGravity="textStart"
+            android:onClick="@{() -> view.settingSearchButton()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/minute_text_view" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

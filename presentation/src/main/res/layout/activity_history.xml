@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:dba="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="view"
+            type="com.wanho.presentation.history.HistoryActivity" />
+
+        <variable
+            name="viewModel"
+            type="com.wanho.presentation.history.HistoryViewModel" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/design_default_color_primary"
+        android:padding="8dp"
+        tools:context=".history.HistoryActivity">
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recycler_view"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            dba:history_list="@{viewModel.historyList}" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>
